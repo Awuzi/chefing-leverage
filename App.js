@@ -1,22 +1,23 @@
-import React, { Component } from "react";
-import { createStackNavigator, createAppContainer } from "react-navigation";
-import Home from "./src/screens/Home";
-import List from "./src/screens/List";
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 
-const AppNavigator = createStackNavigator(
-  {
-    Home,
-    List,
-  },
-  {
-    initialRouteName: "Home",
-  }
-);
-
-const AppContainer = createAppContainer(AppNavigator);
-
-export default class App extends Component {
-  render() {
-    return <AppContainer />;
-  }
+export default function App() {
+  return (
+    <View style={styles.container}>
+      <Text>
+        Welcome to Chefing Levrage (ici la page de connexion avec google)
+      </Text>
+      <StatusBar style="auto" />
+    </View>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
