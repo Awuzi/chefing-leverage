@@ -1,24 +1,26 @@
-import React, {Component} from "react";
-import {Button, Text, View, StyleSheet} from "react-native";
+import React from "react";
+import {Image, StyleSheet, Text, View} from "react-native";
 
-export default class Home extends Component {
-    render() {
-        return (
-            <View>
-                <Text>Home Screen</Text>
-                <Button
-                    style={{ padding: 16, marginTop: 50 }}
-                    title="Add New Item"
-                    color="green"
-                    onPress={() => this.props.navigation.navigate("AddForm")} //Naviguer vers un 'screen' different
-                />
-                <Button
-                    style={{ padding: 16, marginTop: 50 }}
-                    title="List of Items"
-                    color="blue"
-                    onPress={() => this.props.navigation.navigate("List")}
-                />
-            </View>
-        );
-    }
+
+const Home = props => {
+    return (
+        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <Text>Welcome:{props.name}</Text>
+            <Image style={styles.image} source={{uri: props.photoUrl}}/>
+        </View>
+    )
 }
+
+
+const styles = StyleSheet.create({
+    image: {
+        marginTop: 15,
+        width: 150,
+        height: 150,
+        borderColor: "rgba(0,0,0,0.2)",
+        borderWidth: 3,
+        borderRadius: 150
+    }
+})
+
+export default Home;

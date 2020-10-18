@@ -19,7 +19,9 @@ export default class AddForm extends Component {
     render() {
         return (
             <View>
-                <Text>Ajouter un item</Text>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Text>Contact Screen</Text>
+                </View>
 
                 <TextInput onChange={this.handleChange}/>
 
