@@ -1,35 +1,81 @@
 import React from "react";
-import {Text, View} from "react-native";
-import type {Contact} from "../models/contact";
-import {TextInput} from "react-native-web";
+import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
 
 
-//recuperer la data de la sheet ?? normalement
-const contacts: Contact = [
-    {
-        name: 'blablalba',
-        firstname: 'blablalba',
-        phone: 'blablalba',
-        email: 'blablalba',
-        infos: 'blablalba'
-    },
-    {
-        name: 'blublublu',
-        firstname: 'blublublu',
-        phone: 'blublublu',
-        email: 'blublublu',
-        infos: 'blublublu'
-    }
-]
-
-const List = () => {
+function ContactItem({item}) {
     return (
-        <View>
-            <Text style={{ padding: 16, marginTop: 50 }}>Ajoutés récement :</Text>
-            <Text style={{ padding: 16, marginTop: 50 }}>Une synchro sur une gsheet en arrivant sur cette page</Text>
-
-            {contacts.map(contact => <Text>{contact.name} - {contact.phone} ({contact.email})</Text>)}
+        <View style={styles.listItem}>
+            <Image style={{width: 60, height: 60, borderRadius: 30, backgroundColor: 'blue', marginRight: 10}}/>
+            <View style={{alignItems: "flex-start", flex: 1, marginTop:5}}>
+                <Text style={{fontWeight: "bold"}}>{item.name}</Text>
+                <Text>({item.email})</Text>
+                <Text>{item.number}</Text>
+            </View>
         </View>
     );
 }
-export default List;
+
+
+export default class List extends React.Component {
+    state = {
+        data: [
+            {
+                "name": "Jean Claudel Chefing",
+                "company": "Société Générale",
+                "email": "miyah.myles@gmail.com",
+                "number": '00 00 00 00 00',
+                "chefer": "Maeva",
+                "sector": "Bank"
+            },
+            {
+                "name": "Jean Claudel Chefing",
+                "company": "Société Générale",
+                "email": "june.cha@gmail.com",
+                "number": '00 00 00 00 00',
+                "chefer": "Maeva",
+                "sector": "Bank"
+            },
+            {
+                "name": "Jean Claudel Chefing",
+                "company": "Société Générale",
+                "email": "iida.niskanen@gmail.com",
+                "number": '00 00 00 00 00',
+                "chefer": "Maeva",
+                "sector": "Bank"
+            },
+        ]
+    }
+
+    render() {
+        return (
+            <View style={styles.container}>
+                <Text style={{fontSize: 18, marginLeft: 25, marginTop: 90, marginBottom:15}}>Récemment Ajouté: </Text>
+                <FlatList
+                    style={{flex: 1}}
+                    data={this.state.data}
+                    renderItem={({item}) => <ContactItem item={item}/>}
+                    keyExtractor={item => item.email}
+                />
+            </View>
+        );
+    }
+
+}
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#F7F7F7',
+    },
+    listItem: {
+        margin: 5,
+        padding: 10,
+        backgroundColor: "#FFF",
+        width: "80%",
+        flex: 1,
+        //alignItems: 'stretch',
+        //  align:'left',
+        alignSelf: "center",
+        flexDirection: "row",
+        borderRadius: 20
+    }
+});

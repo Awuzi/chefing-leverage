@@ -5,7 +5,7 @@ import {Image, StyleSheet, Text, View} from "react-native";
 const Home = props => {
     return (
         <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <Text>Welcome:{props.name}</Text>
+            <Text>Welcome : {props.name}</Text>
             <Image style={styles.image} source={{uri: props.photoUrl}}/>
         </View>
     )
